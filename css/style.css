@@ -1,0 +1,185 @@
+/*! Font */
+
+@font-face {
+  font-family: "BebasNeue";
+  src: url("./../fonts/BebasNeue-Regular.woff") format("woff");
+}
+
+/*! Style */
+
+body {
+  font: 18px/36px "BebasNeue", "Arial Narrow", Arial, sans-serif;
+  background-color: #ddd;
+}
+
+h1 {
+  font-size: 80px;
+  margin: 50px 0;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.container {
+  width: 1000px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 30px;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.gallery-wrapper li {
+  width: 200px;
+  height: 200px;
+  /* overflow: hidden; */
+  border: 5px solid #666;
+  float: left;
+  margin: 0 20px;
+  position: relative;
+}
+
+.gallery-wrapper li,
+.gallery-wrapper li a img,
+.gallery-wrapper li span {
+  border-radius: 50%;
+}
+
+.gallery-wrapper li span {
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(200, 200, 200, 0.5);
+  font-size: 30px;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  line-height: 200px;
+  color: #333;
+  text-shadow: 1px 1px 1px #bbb;
+  opacity: 0;
+  transform: scale(0) rotate(0);
+  transition: all 0.3s;
+}
+
+.gallery-wrapper li a:hover span {
+  opacity: 1;
+  transform: scale(1) rotate(360deg);
+}
+
+.clear {
+  clear: both;
+}
+
+/*! overlay */
+
+.overlay {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 9999;
+  transition: 0.8s;
+  text-align: center;
+  padding: 110px 0;
+}
+
+.overlay:target {
+  width: auto;
+  height: auto;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.overlay img {
+  max-width: 100%;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+}
+
+.overlay:target img {
+  animation: zoomAndFade 1s;
+}
+
+.overlay .close {
+  position: absolute;
+  width: 18px;
+  top: 50px;
+  left: 50%;
+  margin-left: -20px;
+  color: #fff;
+  text-decoration: none;
+  background-color: black;
+  border: 1px solid #fff;
+  line-height: 13px;
+  padding: 8px 5px 5px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.overlay:target .close {
+  animation: slideDownFade 0.5s 0.5s forwards;
+}
+
+/*! Navigation */
+
+.next,
+.prev {
+  position: absolute;
+  top: 45%;
+  width: 64px;
+  height: 64px;
+  background-image: url("./../img/next.png");
+  text-indent: -9999px;
+  color: #fff;
+  margin-left: 50px;
+  opacity: 0;
+}
+
+.prev {
+  background-image: url("./../img/back.png");
+  margin-left: -115px;
+}
+
+.overlay:target .next,
+.overlay:target .prev {
+  animation: fadeAjah 0.5s 0.5s forwards;
+}
+
+/*! Animation */
+
+@keyframes fadeAjah {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomAndFade {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    margin-top: -20px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
